@@ -3,6 +3,7 @@
 Thanks to `selivan` and `omni-lchen` with refer link as below:
 
 https://github.com/selivan/https-ssl-cert-check-zabbix
+
 https://github.com/omni-lchen/zabbix-ssl/tree/master/zabbix-externalscripts
 
 I created template and custom script both that author.
