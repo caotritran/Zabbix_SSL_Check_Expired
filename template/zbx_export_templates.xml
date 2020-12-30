@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.2</version>
-    <date>2020-01-12T05:13:49Z</date>
+    <date>2020-12-30T07:07:00Z</date>
     <groups>
         <group>
             <name>SWEB</name>
@@ -17,7 +17,11 @@
                     <name>SWEB</name>
                 </group>
             </groups>
-            <applications/>
+            <applications>
+                <application>
+                    <name>SSL</name>
+                </application>
+            </applications>
             <items/>
             <discovery_rules>
                 <discovery_rule>
@@ -60,7 +64,7 @@
                             <multiplier>0</multiplier>
                             <snmp_oid/>
                             <key>ssl_cert_check_expired[{#DOMAIN}]</key>
-                            <delay>86400</delay>
+                            <delay>3600</delay>
                             <history>7</history>
                             <trends>365</trends>
                             <status>0</status>
@@ -88,13 +92,33 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications/>
+                            <applications>
+                                <application>
+                                    <name>SSL</name>
+                                </application>
+                            </applications>
                             <valuemap/>
                             <logtimefmt/>
                             <application_prototypes/>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{SSL:ssl_cert_check_expired[{#DOMAIN}].last()}&lt;3</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>AGENT - SSL will expire soon on [{#DOMAIN}] - {ITEM.LASTVALUE} days left</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
                         <trigger_prototype>
                             <expression>{SSL:ssl_cert_check_expired[{#DOMAIN}].last()}&lt;10</expression>
                             <recovery_mode>0</recovery_mode>
